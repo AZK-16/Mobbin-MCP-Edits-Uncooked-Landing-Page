@@ -363,46 +363,57 @@
     .social-btn{width:44px !important;height:44px !important;}
   }
 
-  /* early users: each quote is the chat-message component from how it works,
-     rebuilt in markup rather than screenshotted -- same #e1e1e8 fill as the
-     incoming bubble there. the tail is the small bottom-left corner the
-     difference-section speech bubbles already use, rather than a masked
-     pseudo-element, which would punch a solid patch through the page's
-     grid background. */
-  .tmn-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,2.4vw,34px);width:min(1160px,92vw);margin:clamp(34px,5vh,60px) auto 0;align-items:stretch;text-align:left;}
-  /* flex:1 on the bubble evens the bubble heights across the row, so the
-     avatar/attribution rows line up instead of stepping with quote length */
-  .tmn{display:flex;flex-direction:column;gap:14px;margin:0;height:100%;}
-  .tmn-bubble{position:relative;flex:1;margin:0;background:#e1e1e8;border-radius:20px 20px 20px 5px;padding:clamp(16px,1.5vw,20px) clamp(18px,1.7vw,23px);font-weight:500;font-size:clamp(14px,1.05vw,15.5px);line-height:1.55;letter-spacing:-0.005em;color:#111;text-wrap:pretty;}
-  .tmn-meta{display:flex;align-items:center;gap:11px;padding-left:4px;}
-  .tmn-avatar{flex:none;width:38px;height:38px;border-radius:50%;background:#f4f4f2;border:1px solid rgba(0,0,0,0.08);display:flex;align-items:center;justify-content:center;color:#9a9aa0;font-weight:700;font-size:13px;letter-spacing:-0.01em;overflow:hidden;}
+  /* Testimonials: three complete, equally weighted cards; no hidden quotes. */
+  .testimonials-section{position:relative;padding:80px 24px 96px;background:#fafafa;text-align:center;}
+  .testimonials-section h2,.faq-section h2{font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(36px,4.2vw,50px);letter-spacing:-0.03em;line-height:1.1;text-wrap:balance;}
+  .tmn-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;width:100%;max-width:1160px;margin:48px auto 0;text-align:left;}
+  .tmn{display:flex;flex-direction:column;gap:32px;margin:0;padding:32px;background:#fff;border:1px solid #e5e5e2;border-radius:16px;}
+  .tmn-bubble{flex:1;margin:0;font-weight:400;font-size:16px;line-height:1.7;letter-spacing:-0.01em;color:#29292d;text-wrap:pretty;}
+  .tmn-meta{display:flex;align-items:center;gap:12px;padding-top:24px;border-top:1px solid #ecece9;}
+  .tmn-avatar{flex:none;width:38px;height:38px;border-radius:50%;background:#f6f6f3;border:1px solid #e5e5e2;display:flex;align-items:center;justify-content:center;color:#77777d;overflow:hidden;}
   .tmn-avatar img{width:100%;height:100%;object-fit:cover;display:block;}
-  .tmn-who{display:flex;flex-direction:column;gap:3px;min-width:0;}
-  .tmn-line{display:flex;align-items:center;gap:7px;flex-wrap:wrap;}
-  .tmn-name{font-weight:700;font-size:13.5px;letter-spacing:-0.015em;color:#111;}
-  .tmn-track{font-weight:600;font-size:11.5px;color:#5f5f66;background:#f4f4f2;border:1px solid rgba(0,0,0,0.08);border-radius:100px;padding:2.5px 9px;white-space:nowrap;}
-  .tmn-context{font-weight:500;font-size:12.5px;line-height:1.4;color:#9a9aa0;}
-  /* same 900px stack point the difference grid uses */
-  @media (max-width:900px){
-    .tmn-grid{grid-template-columns:1fr;gap:clamp(18px,3vh,26px);width:min(560px,92vw);}
-  }
+  .tmn-who{display:flex;flex-direction:column;gap:6px;min-width:0;}
+  .tmn-line{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .tmn-name{font-weight:700;font-size:14px;letter-spacing:-0.015em;color:#29292d;}
+  .tmn-track{font-weight:500;font-size:12px;color:#626268;white-space:nowrap;}
+  .tmn-context{font-weight:400;font-size:13px;line-height:1.5;color:#626268;}
 
-  /* FAQ: native <details>/<summary>, so it opens without JS and is keyboard
-     operable out of the box. name="uc-faq" is what makes browsers enforce
-     one-open-at-a-time natively; componentDidMount repeats the rule in JS for
-     the browsers that don't support the attribute yet. all closed on load. */
-  .faq-list{width:min(760px,92vw);margin:clamp(30px,4.5vh,52px) auto 0;text-align:left;border-top:1px solid rgba(0,0,0,0.09);}
-  .faq-item{border-bottom:1px solid rgba(0,0,0,0.09);}
-  .faq-q{list-style:none;cursor:pointer;display:flex;align-items:flex-start;justify-content:space-between;gap:20px;padding:clamp(17px,1.7vw,21px) 2px;font-weight:500;font-size:clamp(15px,1.25vw,17px);line-height:1.4;letter-spacing:-0.015em;color:#111;transition:color .2s;}
+  /* FAQ keeps the native keyboard-operable, single-open disclosure behaviour. */
+  .faq-section{position:relative;padding:80px 24px 112px;background:#fcfcfa;border-top:1px solid #e5e5e2;}
+  .faq-layout{display:grid;grid-template-columns:minmax(180px,1fr) minmax(0,760px);gap:64px;max-width:1160px;margin:0 auto;align-items:start;}
+  .faq-section h2{text-align:left;padding-top:20px;}
+  .faq-list{min-width:0;text-align:left;border-top:1px solid #dededb;}
+  .faq-item{border-bottom:1px solid #dededb;}
+  .faq-q{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:24px 0;font-weight:500;font-size:17px;line-height:1.5;letter-spacing:-0.015em;color:#111;transition:color .2s;}
   .faq-q::-webkit-details-marker{display:none;}
   .faq-q:hover{color:#E62B15;}
-  /* the chevron carries the only red in the section -- the headline stays plain,
-     since this is the functional section, not an emotional one */
-  .faq-chev{flex:none;display:flex;align-items:center;color:#E62B15;margin-top:2px;transition:transform .3s cubic-bezier(.22,.7,.3,1);}
-  .faq-item[open] .faq-chev{transform:rotate(180deg);}
-  .faq-a{margin:0;padding:0 clamp(30px,3.6vw,44px) clamp(18px,1.9vw,23px) 2px;font-weight:400;font-size:clamp(14px,1.1vw,15.5px);line-height:1.6;color:#5f5f66;text-wrap:pretty;}
-  .faq-item[open] .faq-a{animation:faqIn .34s cubic-bezier(.22,.7,.3,1) both;}
-  @keyframes faqIn{from{opacity:0;transform:translateY(-5px);}to{opacity:1;transform:none;}}
+  .faq-q:focus-visible{outline:2px solid #E62B15;outline-offset:6px;border-radius:4px;}
+  .faq-chev{flex:none;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border:1px solid #e5e5e2;border-radius:50%;color:#626268;transition:transform .25s ease,color .25s ease,background .25s ease;}
+  .faq-item[open] .faq-chev{transform:rotate(180deg);color:#E62B15;background:#fff;border-color:#E62B15;}
+  .faq-a{margin:0;padding:0 56px 28px 0;font-weight:400;font-size:16px;line-height:1.75;color:#5f5f66;text-wrap:pretty;}
+  .faq-item[open] .faq-a{animation:faqIn .2s ease both;}
+  @keyframes faqIn{from{opacity:0;transform:translateY(-4px);}to{opacity:1;transform:none;}}
+  @media (max-width:1000px){
+    .tmn{padding:24px;}
+    .tmn-grid{gap:16px;}
+    .faq-layout{gap:40px;grid-template-columns:minmax(140px,1fr) minmax(0,2fr);}
+  }
+  @media (max-width:760px){
+    .testimonials-section{padding:64px 24px;}
+    .tmn-grid{grid-template-columns:1fr;max-width:560px;margin-top:32px;}
+    .tmn{gap:24px;}
+    .tmn-meta{padding-top:20px;}
+    .faq-section{padding:56px 24px 80px;}
+    .faq-layout{grid-template-columns:1fr;gap:32px;max-width:560px;}
+    .faq-section h2{padding-top:0;}
+    .faq-q{font-size:16px;gap:16px;padding:20px 0;}
+    .faq-a{padding-right:0;font-size:15px;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .faq-chev,.faq-q{transition:none;}
+    .faq-item[open] .faq-a{animation:none;}
+    .testimonials-section .dfin,.faq-section .dfin{opacity:1 !important;transform:none !important;transition:none !important;}
+  }
 </style>
 <template id="__bundler_thumbnail" data-bg-color="#f7f7f5">
 <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg"><rect width="240" height="240" fill="#f7f7f5"></rect><circle cx="120" cy="120" r="52" fill="#E62B15"></circle><text x="120" y="137" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="52" fill="#ffffff">u</text></svg>
@@ -1189,14 +1200,9 @@
        the rejection quote is the strongest proof on the page, so it leads.
        data-di 1/2/3 staggers the cards in sequence off the same reveal
        observer the rest of the page uses (170ms apart). -->
-  <!-- the bottom padding tracks the mission section's so the gap above the FAQ
-       reads as the same whitespace as the gap above this section. the -18px is
-       real: the testimonial grid's last row leaves 18px of slack below its ink,
-       which the mission section's sources line does not, so equal padding would
-       look like an unequal gap. change this only alongside the mission padding. -->
-  <section data-screen-label="Early users" style="position:relative;padding:clamp(30px,5vh,70px) 24px calc(clamp(48px,15vh,190px) - 18px);display:flex;flex-direction:column;align-items:center;text-align:center;">
+  <section class="testimonials-section" data-screen-label="Early users">
 
-    <h2 class="dfin" data-di="0" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(34px,4.2vw,50px);letter-spacing:-0.03em;line-height:1;color:#111;text-wrap:balance;"><span style="font-style:italic;color:#E62B15;">early users,</span> in their words</h2>
+    <h2 class="dfin" data-di="0" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);margin:0;color:#111;"><span style="font-style:italic;color:#E62B15;">early users,</span> in their words</h2>
 
     <div class="tmn-grid">
 
@@ -1249,9 +1255,10 @@
        list in question 2 is the same seven as the proof strip above, on purpose --
        if one list changes, change both. capped at 8: a new question means an old
        one comes out. -->
-  <section data-screen-label="FAQ" style="position:relative;padding:clamp(30px,5vh,70px) 24px clamp(90px,16vh,200px);display:flex;flex-direction:column;align-items:center;text-align:center;">
+  <section class="faq-section" data-screen-label="FAQ">
+    <div class="faq-layout">
 
-    <h2 class="dfin" data-di="0" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);margin:0;font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(34px,4.2vw,50px);letter-spacing:-0.03em;line-height:1;color:#111;text-wrap:balance;">FAQs</h2>
+    <h2 class="dfin" data-di="0" style="opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,.7,.3,1);margin:0;color:#111;">FAQs</h2>
 
     <!-- one reveal for the whole list rather than eight staggered ones: the
          cascade would run past a second here and this section wants to be quick -->
@@ -1290,6 +1297,7 @@
       </details>
     </div>
 
+    </div>
   </section>
 
   <!-- FAQPage markup for search: the questions and answers here must stay
